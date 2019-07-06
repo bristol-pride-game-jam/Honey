@@ -7,18 +7,22 @@ export (PackedScene) var Mob
 var score
 
 func _ready():
+	# Needs to be called in main so all random functions in the other nodes
 	randomize()
-
-# Trigged by the "hit" signal on the player
-func game_over():
-	$ScoreTimer.stop()
-	$MobTimer.stop()
 
 # Let's us reset the game
 func new_game():
 	score = 0
 	$Player.start($StartPosition.position)
+	$HUD.update_score(score)
+	$HUD.show_message("Get Ready")
 	$StartTimer.start()
+
+# Trigged by the "hit" signal on the player
+func game_over():
+	$ScoreTimer.stop()
+	$MobTimer.stop()
+	$HUD.show_game_over()
 
 # When the start timer finishes (one shot)
 func _on_StartTimer_timeout():
@@ -30,6 +34,7 @@ func _on_StartTimer_timeout():
 func _on_ScoreTimer_timeout():
 	# You score by surviving, 1 point per second
 	score += 1
+	$HUD.update_score(score)
 
 # When the mob timer loops
 func _on_MobTimer_timeout():
