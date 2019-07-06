@@ -53,4 +53,7 @@ func _on_MobTimer_timeout():
 	# Set the velocity (speed & direction).
 	mob.linear_velocity = Vector2(rand_range(mob.min_speed, mob.max_speed), 0)
 	mob.linear_velocity = mob.linear_velocity.rotated(direction)
+	# Connects a new even to the mob to be fired when the game starts
+	# We have to do this as the mob won't exist until it's generated above
+	$HUD.connect("start_game", mob, "_on_start_game")
 

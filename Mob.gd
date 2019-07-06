@@ -16,3 +16,7 @@ func _ready():
 # Queues the node for deletion, including all child nodes
 func _on_Visibility_screen_exited():
 	queue_free()
+
+# Delete this mob when a new game is started, clearing the screen
+func _on_start_game():
+	queue_free()
