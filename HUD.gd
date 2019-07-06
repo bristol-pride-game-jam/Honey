@@ -16,8 +16,9 @@ func show_game_over():
 	yield($MessageTimer, "timeout")
 	
 	
-	$MessageLabel.text = "Dodge the\nCreeps!"
+	$MessageLabel.text = "For Honey"
 	$MessageLabel.show()
+	$Logo.show()
 	
 	# Wait 1 second before showing the start button
 	yield(get_tree().create_timer(1), 'timeout')
@@ -26,6 +27,7 @@ func show_game_over():
 # When the start button is pressed
 func _on_StartButton_pressed():
 	$StartButton.hide()
+	$Logo.hide()
 	emit_signal("start_game")
 	
 # When the message timeout expires (one shot)

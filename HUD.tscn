@@ -50,7 +50,7 @@ text = "Play"
 wait_time = 2.0
 one_shot = true
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Logo" type="Sprite" parent="."]
 position = Vector2( 579.492, 414.975 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )

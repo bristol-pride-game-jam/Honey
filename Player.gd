@@ -40,16 +40,12 @@ func _process(delta):
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
 
-	# Choose the correct animation based on whether we are going vertical or horizontal
-	# Flips the sprite based on which direction we are going
+	# Flips the sprite based on which direction it is going
 	if velocity.x != 0:
 	    $AnimatedSprite.animation = "right"
 	    $AnimatedSprite.flip_v = false
 	    # See the note below about boolean assignment
 	    $AnimatedSprite.flip_h = velocity.x < 0
-	elif velocity.y != 0:
-	    $AnimatedSprite.animation = "up"
-	    $AnimatedSprite.flip_v = velocity.y > 0
 
 func _on_Player_body_entered(body):
 	hide()  # Player disappears after being hit.
