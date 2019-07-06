@@ -15,6 +15,8 @@ margin_bottom = 801.0
 color = Color( 0.423529, 0.65098, 0.976471, 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 856.804, 717.176 )
 
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
