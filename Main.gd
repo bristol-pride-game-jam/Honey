@@ -10,7 +10,6 @@ func _ready():
 func new_game():
 	score = 0
 	$Player.start($StartPosition.position)
-	$HUD.show_message("Get Ready")
 	$Music.play()
 	$StartTimer.start()
 	$ColorRect.visible = false

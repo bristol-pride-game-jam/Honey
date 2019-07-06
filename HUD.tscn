@@ -46,13 +46,8 @@ custom_fonts/font = SubResource( 3 )
 shortcut = SubResource( 5 )
 text = "Play"
 
-[node name="MessageTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
 [node name="Logo" type="Sprite" parent="."]
 position = Vector2( 579.492, 414.975 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
-[connection signal="timeout" from="MessageTimer" to="." method="_on_MessageTimer_timeout"]
