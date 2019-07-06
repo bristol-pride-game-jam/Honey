@@ -13,6 +13,8 @@ func new_game():
 	$HUD.show_message("Get Ready")
 	$Music.play()
 	$StartTimer.start()
+	$ColorRect.visible = false
+	$Background.visible = true
 
 # Trigged by the "hit" signal on the player
 func game_over():
@@ -20,6 +22,8 @@ func game_over():
 	$HUD.show_game_over()
 	$Music.stop()
 	$EndSound.play()
+	$ColorRect.visible = true
+	$Background.visible = false
 
 # When the start timer finishes (one shot)
 func _on_StartTimer_timeout():
