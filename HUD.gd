@@ -23,9 +23,6 @@ func show_game_over():
 	yield(get_tree().create_timer(1), 'timeout')
 	$StartButton.show()
 
-func update_score(score):
-	$ScoreLabel.text = str(score)
-
 # When the start button is pressed
 func _on_StartButton_pressed():
 	$StartButton.hide()
