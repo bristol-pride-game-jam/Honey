@@ -14,9 +14,9 @@ func _on_StartButton_pressed():
 	$StartButton.hide()
 	$MessageLabel.hide()
 	$Logo.hide()
-	$ScoreLabel.text = "0"
+	$ScoreLabel.text = "Score: 0"
 	$ScoreLabel.show()
 	emit_signal("start_game")
 
 func change_score(score):
-	$ScoreLabel.text = str(score)
+	$ScoreLabel.text = "Score: " + str(score)
