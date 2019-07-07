@@ -1,7 +1,7 @@
 extends Node
 
 export (PackedScene) var Spinach
-
+export var chance_to_spawn = 4
 var score
 var screen_size  # Size of the game window.
 var min_height # Minimum height 
@@ -38,19 +38,21 @@ func _on_StartTimer_timeout():
 
 # Generate a new spinach leaf
 func _on_SpinachTimer_timeout():
-	var spinach = Spinach.instance()
-	add_child_below_node($Background, spinach)
-	
-	var rand_x = randi() % int(screen_size.x)
-	var rand_y = randi() % int(screen_size.y) + min_height
-	
-	spinach.position = Vector2(rand_x, rand_y)
-	
-	var direction = rand_range(-PI / 4, PI / 4)
-	spinach.rotation = direction
-	
-	spinach.connect("eaten", self, "_on_Spinach_eaten")
+	if ((randi() % chance_to_spawn) == 0):
+		var spinach = Spinach.instance()
+		add_child_below_node($Background, spinach)
+		
+		var rand_x = randi() % int(screen_size.x)
+		var rand_y = randi() % int(screen_size.y) + min_height
+		
+		spinach.position = Vector2(rand_x, rand_y)
+		
+		var direction = rand_range(-PI / 4, PI / 4)
+		spinach.rotation = direction
+		
+		spinach.connect("eaten", self, "_on_Spinach_eaten")
 
 # Fired when leaf is collided with
 func _on_Spinach_eaten():
 	score += 1
+	$HUD.change_score(score)
