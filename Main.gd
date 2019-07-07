@@ -55,4 +55,4 @@ func _on_SpinachTimer_timeout():
 
 # Fired when leaf is collided with
 func _on_Spinach_eaten():
-	pass
+	score += 1
