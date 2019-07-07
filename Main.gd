@@ -21,7 +21,6 @@ func new_game():
 	$Music.play()
 	$StartTimer.start()
 	$SpinachTimer.start()
-	$ColorRect.visible = false
 	$Background.visible = true
 
 # -- UNUSED --
@@ -31,7 +30,6 @@ func game_over():
 	$HUD.show_game_over()
 	$Music.stop()
 	$EndSound.play()
-	$ColorRect.visible = true
 	$Background.visible = false
 
 # -- UNUSED --
