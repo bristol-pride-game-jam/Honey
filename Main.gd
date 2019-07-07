@@ -10,11 +10,13 @@ var score
 var screen_size  # Size of the game window.
 var min_height # Minimum height 
 
+var sweaks;
+
 func _ready():
 	# Ewwwwww!
 	min_height = $Player.min_height
 	screen_size = $Player.screen_size
-	
+	sweaks = [$Sweaks/one, $Sweaks/two, $Sweaks/three]
 	# Needs to be called in main so all random functions in the other nodes
 	randomize()
 
@@ -67,7 +69,12 @@ func _on_SpinachTimer_timeout():
 func _on_Spinach_eaten():
 	score += 1
 	$HUD.change_score(score)
+	play_sweak()
 
 func _on_SecondsTimer_timeout():
 	seconds_left -= 1
 	$HUD.change_seconds(seconds_left)
+
+func play_sweak():
+	var sweak = sweaks[randi() % sweaks.size()]
+	sweak.play()
