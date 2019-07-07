@@ -4,6 +4,8 @@ signal game_over
 
 export (PackedScene) var Spinach
 export var percentage_chance_to_spawn = 25
+
+var seconds_left = 30
 var score
 var screen_size  # Size of the game window.
 var min_height # Minimum height 
@@ -19,10 +21,12 @@ func _ready():
 # Let's us reset the game
 func new_game():
 	score = 0
+	seconds_left = 30
 	$Player.start($StartPosition.position)
 	$Music.play()
 	$SpinachTimer.start()
 	$GameOverTimer.start()
+	$SecondsTimer.start()
 	$Background.visible = true
 
 # Called on game over timeout
@@ -31,6 +35,7 @@ func game_over():
 	$Player.stop()
 	$SpinachTimer.stop()
 	$GameOverTimer.stop()
+	$SecondsTimer.stop()
 	$HUD.show_game_over()
 	$Music.stop()
 	$EndSound.play()
@@ -63,3 +68,8 @@ func _on_Spinach_eaten():
 	score += 1
 	$HUD.change_score(score)
 
+
+
+func _on_SecondsTimer_timeout():
+	seconds_left -= 1
+	$HUD.change_seconds(seconds_left)

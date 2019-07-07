@@ -8,6 +8,7 @@ func show_game_over():
 	$MessageLabel.show()
 	$StartButton.show()
 	$Logo.show()
+	$TimeLabel.hide()
 
 # When the start button is pressed
 func _on_StartButton_pressed():
@@ -18,13 +19,13 @@ func _on_StartButton_pressed():
 	$ScoreLabel.text = "Score: 0"
 	$ScoreLabel.show()
 	
-	$TimeLabel.text = "Seconds Left: 0"
+	$TimeLabel.text = "Seconds Left: 30"
 	$TimeLabel.show()
 	
 	emit_signal("start_game")
 
 func change_seconds(seconds_left):
-	$TimeLabel.text = "Seconds Left: " + seconds_left
+	$TimeLabel.text = "Seconds Left: " + str(seconds_left)
 
 func change_score(score):
 	$ScoreLabel.text = "Score: " + str(score)

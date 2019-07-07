@@ -62,7 +62,7 @@ margin_right = 319.0
 margin_bottom = 45.0
 rect_pivot_offset = Vector2( 87, 150 )
 custom_fonts/font = SubResource( 5 )
-text = "Seconds Left: 0"
+text = "Seconds Left: 30"
 valign = 1
 
 [node name="ScoreLabel" type="Label" parent="."]

@@ -35,6 +35,8 @@ wait_time = 0.25
 wait_time = 30.0
 one_shot = true
 
+[node name="SecondsTimer" type="Timer" parent="."]
+
 [node name="StartPosition" type="Position2D" parent="."]
 position = Vector2( 155, 755 )
 
@@ -47,4 +49,5 @@ stream = ExtResource( 6 )
 stream = ExtResource( 7 )
 [connection signal="timeout" from="SpinachTimer" to="." method="_on_SpinachTimer_timeout"]
 [connection signal="timeout" from="GameOverTimer" to="." method="game_over"]
+[connection signal="timeout" from="SecondsTimer" to="." method="_on_SecondsTimer_timeout"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
