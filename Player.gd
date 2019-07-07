@@ -1,9 +1,5 @@
 extends Area2D
 
-# Emits a signal when the collision is fired for the player
-# Signal == Event methinks
-signal hit
-
 # "export" makes this valuable available in the inspector, so we can play about with it quickly
 export var speed = 400  # How fast the player will move (pixels/sec).
 
@@ -51,11 +47,6 @@ func _process(delta):
 	    $AnimatedSprite.flip_v = false
 	    # See the note below about boolean assignment
 	    $AnimatedSprite.flip_h = velocity.x < 0
-
-func _on_Player_body_entered(body):
-	hide()  # Player disappears after being hit.
-	emit_signal("hit") # Send out the signal (event) when collided with
-	$CollisionShape2D.set_deferred("disabled", true)
 
 # To be called when starting a new game
 func start(pos):
