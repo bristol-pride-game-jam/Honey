@@ -41,7 +41,7 @@ func _on_StartTimer_timeout():
 # Generate a new spinach leaf
 func _on_SpinachTimer_timeout():
 	var spinach = Spinach.instance()
-	add_child(spinach)
+	add_child_below_node($Background, spinach)
 	
 	var rand_x = randi() % int(screen_size.x)
 	var rand_y = randi() % int(screen_size.y) + min_height
