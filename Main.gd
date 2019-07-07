@@ -68,8 +68,6 @@ func _on_Spinach_eaten():
 	score += 1
 	$HUD.change_score(score)
 
-
-
 func _on_SecondsTimer_timeout():
 	seconds_left -= 1
 	$HUD.change_seconds(seconds_left)
