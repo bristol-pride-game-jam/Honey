@@ -1,5 +1,7 @@
 extends Node
 
+signal game_over
+
 export (PackedScene) var Spinach
 export var chance_to_spawn = 4
 var score
@@ -19,22 +21,20 @@ func new_game():
 	score = 0
 	$Player.start($StartPosition.position)
 	$Music.play()
-	$StartTimer.start()
 	$SpinachTimer.start()
+	$GameOverTimer.start()
 	$Background.visible = true
 
-# -- UNUSED --
+# Called on game over timeout
 func game_over():
-	$ScoreTimer.stop()
+	emit_signal("game_over")
+	$Player.stop()
 	$SpinachTimer.stop()
+	$GameOverTimer.stop()
 	$HUD.show_game_over()
 	$Music.stop()
 	$EndSound.play()
 	$Background.visible = false
-
-# -- UNUSED --
-func _on_StartTimer_timeout():
-	pass # Do nothing
 
 # Generate a new spinach leaf
 func _on_SpinachTimer_timeout():
@@ -50,9 +50,14 @@ func _on_SpinachTimer_timeout():
 		var direction = rand_range(-PI / 4, PI / 4)
 		spinach.rotation = direction
 		
+		# Let Main know when this particular tasty morsel is eaten
 		spinach.connect("eaten", self, "_on_Spinach_eaten")
+		
+		# Let Spinach know when game is over to remove itself from the canvas
+		self.connect("game_over", spinach, "game_over")
 
 # Fired when leaf is collided with
 func _on_Spinach_eaten():
 	score += 1
 	$HUD.change_score(score)
+

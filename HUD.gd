@@ -5,17 +5,16 @@ signal start_game
 
 # Called when the player loses, showing the timer
 func show_game_over():	
-	# Wait 1 second before showing the start button
-	yield(get_tree().create_timer(1), 'timeout')
 	$MessageLabel.show()
 	$StartButton.show()
-	$ScoreLabel.hide()
+	$Logo.show()
 
 # When the start button is pressed
 func _on_StartButton_pressed():
 	$StartButton.hide()
 	$MessageLabel.hide()
 	$Logo.hide()
+	$ScoreLabel.text = "0"
 	$ScoreLabel.show()
 	emit_signal("start_game")
 
