@@ -3,7 +3,7 @@ extends Node
 signal game_over
 
 export (PackedScene) var Spinach
-export var chance_to_spawn = 4
+export var percentage_chance_to_spawn = 25
 var score
 var screen_size  # Size of the game window.
 var min_height # Minimum height 
@@ -36,9 +36,11 @@ func game_over():
 	$EndSound.play()
 	$Background.visible = false
 
-# Generate a new spinach leaf
+# Generate a new spinach leaf based on the chance to spawn
 func _on_SpinachTimer_timeout():
-	if ((randi() % chance_to_spawn) == 0):
+	var chance_range = int(100 / percentage_chance_to_spawn)
+	
+	if ((randi() % chance_range) == 0):
 		var spinach = Spinach.instance()
 		add_child_below_node($Background, spinach)
 		
